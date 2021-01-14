@@ -30,7 +30,7 @@ const findByFirstName = firstName => {
 
 
 const findByName = (firstName, lastName) => {
-  console.log("reached findByName memberService", firstName, lastName);
+  console.log("reached findByName memberService", firstName, lastName);  
   return http.get(`/individuals?firstName=${firstName}&lastName=${lastName}`);
 }
 
