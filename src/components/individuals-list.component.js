@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import IndividualDataService from "../services/individual.service";
+import IndividualDataService from "../services/IndividualService";
 import { Link } from "react-router-dom";
 
 export default class MembersList extends Component {

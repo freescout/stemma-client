@@ -5,7 +5,7 @@ import Tab from 'react-bootstrap/Tab';
 import IndividualDataService from '../../services/IndividualService';
 import BasicDetails from './BasicDetails';
 import EventDetails from './EventDetails';
-import Contact from '../Contact';
+import ContactDetails from './ContactDetails';
 
 const AddIndividual = () => {
   const initialIndividualState = {
@@ -75,8 +75,8 @@ const AddIndividual = () => {
                 <Tab eventKey="events" title="Events">
                   <EventDetails onAddEventDetails={addEventDetailsHandler} />
                 </Tab>
-                <Tab eventKey="contact" title="Contact" >
-                  <Contact />
+                <Tab eventKey="contact" title="ContactDetails" >
+                  <ContactDetails />
                 </Tab>
               </Tabs>
               <button onClick={saveIndividual} className="btn btn-success">
