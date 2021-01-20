@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { StyleSheet, css } from 'aphrodite';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import Card from 'react-bootstrap/Card';
 
 import Birth from './events/Birth';
 import Death from './events/Death';
@@ -100,9 +102,10 @@ const EventDetails = React.memo (props => {
   return (
     
     <div>
-      <div class='card'>
-        <div class="card-body">
-          <h5 class="card-title">Events</h5>
+      <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
+        <Card.Body>
+          <Card.Title>Add Individual</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">Events</Card.Subtitle>
           <Birth onAddBirthDetails={addBirthDetailsHandler} />
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" name="defaultChecked2" id="defaultChecked2" checked={isAlive} onChange={onChangeAliveHandler} />
@@ -128,9 +131,8 @@ const EventDetails = React.memo (props => {
             <Dropdown.Item eventKey="other">Other</Dropdown.Item>
           </DropdownButton>
           {otherEvents}
-
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   )
 
@@ -138,3 +140,12 @@ const EventDetails = React.memo (props => {
 })
 
 export default EventDetails;
+
+const Styles = StyleSheet.create({
+  outerContainer: {
+    background: '#EAE7DC',
+    width: '80%',
+
+  },
+
+})

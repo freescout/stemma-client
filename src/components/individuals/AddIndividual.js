@@ -75,7 +75,7 @@ const AddIndividual = () => {
                 <Tab eventKey="events" title="Events">
                   <EventDetails onAddEventDetails={addEventDetailsHandler} />
                 </Tab>
-                <Tab eventKey="contact" title="ContactDetails" >
+                <Tab eventKey="contact" title="Contact" >
                   <ContactDetails />
                 </Tab>
               </Tabs>

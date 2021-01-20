@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search } from 'react-bootstrap-icons';
+import { StyleSheet, css } from 'aphrodite';
+import Card from 'react-bootstrap/Card';
 
 import SearchIndividual from '../SearchIndividual.js';
 
@@ -41,9 +43,10 @@ const Wedding = (props) => {
 
   return (
     <div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Wedding</h5>
+      <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
+        <Card.Body>
+
+          <Card.Subtitle className="mb-2 text-muted">Wedding</Card.Subtitle>
           <div class="col">
             <input type="text" readOnly value={name} id="partner" placeholder="Enter Partner's name and search" onChange={handleInputChange} name='partner'/>
             <Search onClick={searchIndividual} />
@@ -57,10 +60,20 @@ const Wedding = (props) => {
           <div class="col">
             {isSearching && <SearchIndividual setSelectedIndividual={setSelectedIndividualHandler} />}
           </div>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   )
 }
 
 export default Wedding;
+
+
+const Styles = StyleSheet.create({
+  outerContainer: {
+    background: '#EAE7DC',
+    width: '80%',
+
+  },
+
+})

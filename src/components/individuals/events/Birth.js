@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import Card from 'react-bootstrap/Card';
 import { Search } from 'react-bootstrap-icons';
 
 import SearchIndividual from '../SearchIndividual.js';
@@ -64,9 +66,10 @@ const Birth = (props) => {
 
   return (
     <div >
-      <div class='card'>
-        <div class='card-body'>
-          <h5 class="card-title">Birth</h5>
+      <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
+        <Card.Body>
+
+          <Card.Subtitle className="mb-2 text-muted">Birth</Card.Subtitle>
 
           <div class="form-group row">
             <div class="col">
@@ -87,12 +90,20 @@ const Birth = (props) => {
               {indivSearch  && <SearchIndividual setSelectedIndividual={setSelectedIndividualHandler} />}
             </div>
           </div>
-        </div>
-      </div>
-
+        </Card.Body>
+      </Card>
  
     </div>
   )
 }
 
 export default Birth;
+
+const Styles = StyleSheet.create({
+  outerContainer: {
+    background: '#EAE7DC',
+    width: '80%',
+
+  },
+
+})

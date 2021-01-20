@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import Card from 'react-bootstrap/Card';
 
 const Death = (props) => {
   const initialDeathDetails = {
@@ -18,9 +20,10 @@ const Death = (props) => {
 
   return (
     <div>
-      <div class='card'>
-        <div class='card-body'>
-          <h5 class='card-title'>Death</h5>
+      <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
+        <Card.Body>
+
+          <Card.Subtitle className="mb-2 text-muted">Death</Card.Subtitle>
           <div class="form-group row">
             <div class="col">
               <input class="form-control" type="date" value={deathDetails.dateOfDeath} id="dateofDeath" placeholder="Date of Death" onChange={handleInputChange} name='dateOfDeath' />
@@ -29,10 +32,19 @@ const Death = (props) => {
               <input type="text" id="placeOfDeath" class="form-control" placeholder="Place" value={deathDetails.placeOfDeath} onChange={handleInputChange} name='placeOfDeath' />
             </div>
           </div>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   )
 }
 
 export default Death;
+
+const Styles = StyleSheet.create({
+  outerContainer: {
+    background: '#EAE7DC',
+    width: '80%',
+
+  },
+
+})
