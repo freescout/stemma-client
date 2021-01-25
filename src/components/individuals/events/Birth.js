@@ -45,13 +45,11 @@ const Birth = (props) => {
   const setSelectedIndividualHandler = (...props) => {
     console.log("Person Selected", props[0]);
     if (indivSearch==="father") {
-      setFather(props[0]);
-      setBirthDetails({ ...birthDetails, father: father });
+      setBirthDetails({ ...birthDetails, father: props[0] });
       setFatherName(props[0].name.firstName + " " + props[0].name.lastName);
     }
     else if (indivSearch === "mother"){
-      setMother(props[0]);
-      setBirthDetails({ ...birthDetails, mother: mother });
+      setBirthDetails({ ...birthDetails, mother: props[0] });
       setMotherName(props[0].name.firstName + " " + props[0].name.lastName);
     }
 

@@ -9,7 +9,7 @@ import ContactDetails from './ContactDetails';
 
 const AddIndividual = () => {
   const initialIndividualState = {
-  basicDetails: '',
+   basicDetails: '',
    eventDetails: '',
    contactDetails: ''
   };
@@ -17,7 +17,6 @@ const AddIndividual = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const addBasicDetailsHandler = (...props) => {
-    console.log("Basic Details", props);
     let newIndiv = {
       ...individual,...props[0]
     };
@@ -28,9 +27,13 @@ const AddIndividual = () => {
       ...individual, ...props[0]
     })
   }
+
+  const addContactDetailsHandler = (...props) => {
+    setIndividual({
+      ...individual, ...props[0]
+    })
+  }
   const saveIndividual = () => {
-    console.log("Basic Details at save", individual);
-    console.log("Event Details at save", individual);
 
 /*     var data = {
       basicDetails: individual.basicDetails,
@@ -75,8 +78,8 @@ const AddIndividual = () => {
                 <Tab eventKey="events" title="Events">
                   <EventDetails onAddEventDetails={addEventDetailsHandler} />
                 </Tab>
-                <Tab eventKey="contact" title="Contact" >
-                  <ContactDetails />
+                <Tab eventKey="contact" title="ContactDetails" >
+                  <ContactDetails onAddContactDetails={addContactDetailsHandler} />
                 </Tab>
               </Tabs>
               <button onClick={saveIndividual} className="btn btn-success">

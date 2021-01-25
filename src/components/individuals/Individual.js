@@ -16,16 +16,16 @@ const Individual = () => {
       <div className={css(Styles.innerContainer)}>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first" className={css(Styles.tabs)} >
           <Row>
-            <Col sm={3} className={css(Styles.tabs)}>
+            <Col sm={2} className={css(Styles.col)}>
               <Nav variant="pills" className="flex-column">
-                <Nav.Item>
-                  <Nav.Link eventKey="first">Add</Nav.Link>
+                <Nav.Item className={css(Styles.item)}>
+                  <Nav.Link eventKey="first" className={css(Styles.link)}>Add</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Update</Nav.Link>
+                  <Nav.Link eventKey="second" className={css(Styles.link)}>Update</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="thirs">Delete</Nav.Link>
+                  <Nav.Link eventKey="third" className={css(Styles.link)}>Delete</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
@@ -54,7 +54,7 @@ export default Individual;
 const Styles = StyleSheet.create({
   outerContainer: {
     background: '#EAE7DC',
-    width: '80%',
+   
     
   },
   innerContainer: {
@@ -65,6 +65,13 @@ const Styles = StyleSheet.create({
     background: '#EAE7DC',
    border: 'white',
   
+  },
+
+  item: {
+
+  }, 
+  link: {
+    background: 'brown'
   }
 
 })

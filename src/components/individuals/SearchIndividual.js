@@ -36,6 +36,7 @@ const SearchIndividual = React.memo(props => {
     console.log("setActive Indiv", individual);
     setCurrentIndex(currentIndex);
     setSelectedIndividual(individual);
+    console.log('selected Individual', selectedIndividual);
   }
 
   const selectIndividual = () => {
