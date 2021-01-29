@@ -15,6 +15,7 @@ const AddIndividual = () => {
   };
   const [individual, setIndividual] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [addPartner, setAddPartner] = useState(false)
 
   const addBasicDetailsHandler = (...props) => {
     let newIndiv = {
@@ -59,13 +60,20 @@ const AddIndividual = () => {
     setSubmitted(false);
   };
 
+  const newPartner = () => {
+    setAddPartner(true);
+  }
+
   return (
     <div className="submit-form">
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newPartner}>
+            Add Partner
+          </button>
           <button className="btn btn-success" onClick={newIndividual}>
-            Add
+           Cancel
           </button>
         </div>
       ) : (

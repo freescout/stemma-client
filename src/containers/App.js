@@ -40,7 +40,7 @@ class App extends Component {
                 </li>
               </div>
             </nav> */}
-            <div>
+          <div className={css(Styles.content)}>
               {this.renderRoute()}
             </div>
 
@@ -72,5 +72,15 @@ class App extends Component {
 export default App;
 
 const Styles = StyleSheet.create({
-
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 60, // for header
+    //paddingBottom: 60, // for footer
+    minHeight: 600, // TODO
+    overflowX: 'hidden'
+    //flex: '1 1 auto', // TODO
+    //position: 'relative', //need this to position inner content
+    //overflowY: 'auto'
+  },
 })

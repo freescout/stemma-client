@@ -1,49 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Tab from 'react-bootstrap/Tab';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 
-import AddIndividual from './AddIndividual';
-import DeleteIndividual from './DeleteIndividual';
-import UpdateIndividual from './UpdateIndividual';
+import IndividualService from '../../services/IndividualService';
 
 const Individual = () => {
-  return(
+  const [searchDetails, setSearchDetails] = useState('');
+  const [individuals, setIndividuals] = useState([]);
+  const [currentIndividual, setCurrentIndividual] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [searchTitle, setSearchTitle] = useState("");
+  const [indivCardOpen, setIndivCardOpen] = useState(false);
+
+
+  useEffect(() => {
+    retrieveIndividuals();
+  }, []);
+
+  const retrieveIndividuals = () => {
+    IndividualService.getAll()
+      .then(response => {
+        setIndividuals(response.data);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const setActiveIndividual = (individual, index) => {
+    setCurrentIndividual(individual);
+    setCurrentIndex(index);
+    setIndivCardOpen(true);
+  };
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setSearchDetails({ ...searchDetails, [name]: value }
+    )
+  };
+  return (
     <div className={css(Styles.outerContainer)}>
-      <div className={css(Styles.innerContainer)}>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first" className={css(Styles.tabs)} >
-          <Row>
-            <Col sm={2} className={css(Styles.col)}>
-              <Nav variant="pills" className="flex-column">
-                <Nav.Item className={css(Styles.item)}>
-                  <Nav.Link eventKey="first" className={css(Styles.link)}>Add</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="second" className={css(Styles.link)}>Update</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="third" className={css(Styles.link)}>Delete</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
-            <Col sm={9}>
-              <Tab.Content>
-                <Tab.Pane eventKey="first">
-                  <AddIndividual />
-                </Tab.Pane>
-                <Tab.Pane eventKey="second">
-                  <UpdateIndividual />
-                </Tab.Pane>
-                <Tab.Pane eventKey="third">
-                  <DeleteIndividual />
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
-          </Row>
-        </Tab.Container>
+      <div className={css(Styles.searchIndiv)}>
+        <Form>
+          <Form.Group controlId="formGridAddress1">
+            <Form.Control placeholder="Search Individuals" />
+          </Form.Group>
+        </Form>
+      </div>
+      <div className={css(Styles.individualListCardDiv)}>
+        <div className={css(Styles.individualListDiv)}>
+          <h4>Individuals List</h4>
+
+          <ul className="list-group">
+            {individuals &&
+              individuals.map((individual, index) => (
+                <li
+                  className={
+                    "list-group-item " + (index === currentIndex ? "active" : "")
+                  }
+                  onClick={() => setActiveIndividual(individual, index)}
+                  key={index}
+                >
+                  {individual.name.firstName}
+                </li>
+              ))}
+          </ul>
+        </div>
+        <div className={css(Styles.individualCardDiv)}> 
+          {(currentIndividual && indivCardOpen) ?
+            <Card className={css(Styles.individualCard)}>
+              <Card.Body>
+                <Card.Title>{currentIndividual.name.firstName}  {currentIndividual.name.lastName}</Card.Title>
+                <Card.Text>
+                  {currentIndividual.name.nickName}
+                </Card.Text>
+                
+              </Card.Body>
+              
+
+            </Card> : <div />}
+        </div>
       </div>
     </div>
   )
@@ -51,27 +89,30 @@ const Individual = () => {
 
 export default Individual;
 
+
 const Styles = StyleSheet.create({
   outerContainer: {
     background: '#EAE7DC',
-   
-    
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'column'
+
   },
-  innerContainer: {
-    //background: '#D8C3A5',
-    
+  searchIndiv: {
+
   },
-  tabs: {
-    background: '#EAE7DC',
-   border: 'white',
-  
+  individualListCardDiv: {
+    display: 'flex',
+  },
+  individualListDiv: {
+    width: '70%',
   },
 
-  item: {
 
-  }, 
-  link: {
-    background: 'brown'
-  }
+  individualCardDiv: {
+   width: '25%',
+    //marginLeft: 50,
+  },
 
 })
+
