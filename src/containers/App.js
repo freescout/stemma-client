@@ -59,6 +59,7 @@ class App extends Component {
     return(
       <Switch>
         <Route exact path="/individuals" component={Individual} />
+        <Route exact path='/individuals/add' component={AddIndividual}/>
 {/*         <Route exact path="/individuals/add" component={AddIndividual} />
         <Route exact path="/individuals/modify" component={UpdateIndividual} />
         <Route exact path="/individuals/delete" component={DeleteIndividual} /> */}

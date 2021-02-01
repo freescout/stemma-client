@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
+import { PlusCircleFill } from 'react-bootstrap-icons';
 
 import IndividualService from '../../services/IndividualService';
+import AddIndividual from './AddIndividual';
 
 const Individual = () => {
   const [searchDetails, setSearchDetails] = useState('');
@@ -13,6 +16,11 @@ const Individual = () => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
   const [indivCardOpen, setIndivCardOpen] = useState(false);
+
+
+  let img = require('../../assets/images/pp.jpg');
+
+
 
 
   useEffect(() => {
@@ -63,18 +71,25 @@ const Individual = () => {
                   onClick={() => setActiveIndividual(individual, index)}
                   key={index}
                 >
-                  {individual.name.firstName}
+                  {individual.name.firstName} {individual.name.lastName}
                 </li>
               ))}
           </ul>
+          <Link to={'/individuals/add'}>
+            <div className={css(Styles.addIndiv)}><PlusCircleFill color="royalblue" size={30} /></div>
+          </Link>
+          
         </div>
+
         <div className={css(Styles.individualCardDiv)}> 
           {(currentIndividual && indivCardOpen) ?
             <Card className={css(Styles.individualCard)}>
+              <Card.Img variant="top" src={img} roundedCircle />
               <Card.Body>
                 <Card.Title>{currentIndividual.name.firstName}  {currentIndividual.name.lastName}</Card.Title>
+                <Card.Subtitle>{currentIndividual.name.nickName}</Card.Subtitle>
                 <Card.Text>
-                  {currentIndividual.name.nickName}
+                  
                 </Card.Text>
                 
               </Card.Body>
@@ -108,7 +123,10 @@ const Styles = StyleSheet.create({
     width: '70%',
   },
 
-
+  addIndiv: {
+    textAlign: 'right',
+    marginTop: 10
+  },
   individualCardDiv: {
    width: '25%',
     //marginLeft: 50,
