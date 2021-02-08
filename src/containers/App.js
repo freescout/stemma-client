@@ -8,11 +8,12 @@ import "./App.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AddIndividual from "../components/individuals/AddIndividual";
-import Individual from "../components/individuals/Individual";
+import Individuals from "../components/individuals/Individuals";
 import DeleteIndividual from "../components/individuals/DeleteIndividual";
-import UpdateIndividual from "../components/individuals/UpdateIndividual";
+import EditIndividual from "../components/individuals/EditIndividual";
 import IndividualsList from "../components/individuals-list.component";
 import Tree from "../components/Tree";
+import AddPartner from '../components/individuals/AddPartner';
 
 class App extends Component {
   render() {
@@ -58,11 +59,12 @@ class App extends Component {
   renderRoute() {
     return(
       <Switch>
-        <Route exact path="/individuals" component={Individual} />
+        <Route exact path="/individuals" component={Individuals} />
         <Route exact path='/individuals/add' component={AddIndividual}/>
-{/*         <Route exact path="/individuals/add" component={AddIndividual} />
-        <Route exact path="/individuals/modify" component={UpdateIndividual} />
-        <Route exact path="/individuals/delete" component={DeleteIndividual} /> */}
+        <Route exact path='/individuals/partner'component={AddPartner}/>
+
+        <Route exact path="/individuals/edit" component={EditIndividual} />
+        <Route exact path="/individuals/delete" component={DeleteIndividual} /> 
         <Route exact path="/individuals/:id" component={IndividualsList} />
         <Route exact path="/tree" component={Tree} />
       </Switch>

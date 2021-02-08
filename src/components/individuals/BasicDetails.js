@@ -28,7 +28,7 @@ const BasicDetails = React.memo (props => {
       <div>
         <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
           <Card.Body>
-            <Card.Title>Add Individual</Card.Title>
+            {/* <Card.Title>Add Individual</Card.Title> */}
             <Card.Subtitle className="mb-2 text-muted">Basic Details</Card.Subtitle>
               <div class="form-row mb-4">
                 <div class="col">

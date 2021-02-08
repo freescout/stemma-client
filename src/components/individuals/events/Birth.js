@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form'
 import { Search } from 'react-bootstrap-icons';
 
 import SearchIndividual from '../SearchIndividual.js';
@@ -70,20 +71,22 @@ const Birth = (props) => {
           <Card.Subtitle className="mb-2 text-muted">Birth</Card.Subtitle>
 
           <div class="form-group row">
-            <div class="col">
+            <div class="form-group col-md-6">
               <input class="form-control" type="date" value={birthDetails.dateOfBirth} id="dateOfBirth" placeholder="Date of Birth" onChange={handleInputChange} name='dateOfBirth' />
             </div>
-            <div class="col">
+            <div class="form-group col-md-6">
+              <input type="text" id="placeOfBirth" class="form-control" required placeholder="Place Of Birth" value={birthDetails.placeOfBirth} onChange={handleInputChange} name='placeOfBirth' />
+            </div>
+
+            <div class="form-group col-md-6">
               <input type="text" readOnly id="father" class="form-control" required placeholder="Father" value={fatherName} onChange={handleInputChange} name='father' />
               <Search onClick={searchFather} />
             </div>
-            <div class="col">
+            <div class="form-group col-md-6">
               <input type="text" readOnly id="mother" class="form-control" required placeholder="Mother" value={motherName} onChange={handleInputChange} name='mother' />
               <Search onClick={searchMother} />
             </div>
-            <div class="col">
-              <input type="text" id="placeOfBirth" class="form-control" required placeholder="Place Of Birth" value={birthDetails.placeOfBirth} onChange={handleInputChange} name='placeOfBirth' />
-            </div>
+
             <div class="col">
               {indivSearch  && <SearchIndividual setSelectedIndividual={setSelectedIndividualHandler} />}
             </div>

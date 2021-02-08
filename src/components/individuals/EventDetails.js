@@ -24,7 +24,7 @@ const EventDetails = React.memo (props => {
   }, [eventDetails]) //add the state in dependency array and this useEffect will run whenever state changes//
 
   const addBirthDetailsHandler = (...props) => {
-    console.log("at birth details handle in event handler",props);
+    //console.log("at birth details handle in event handler",props);
     setEventDetails({
       ...eventDetails,...props[0]
     });
@@ -32,7 +32,7 @@ const EventDetails = React.memo (props => {
   }
 
   const addDeathDetailsHandler = (...props) => {
-    console.log("at death details handle in event handler", props);
+    //console.log("at death details handle in event handler", props);
     setEventDetails({
       ...eventDetails,...props[0]
     });
@@ -104,7 +104,7 @@ const EventDetails = React.memo (props => {
     <div>
       <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
         <Card.Body>
-          <Card.Title>Add Individual</Card.Title>
+          {/* <Card.Title>Add Individual</Card.Title> */}
           <Card.Subtitle className="mb-2 text-muted">Events</Card.Subtitle>
           <Birth onAddBirthDetails={addBirthDetailsHandler} />
           <div class="custom-control custom-checkbox">
@@ -118,7 +118,7 @@ const EventDetails = React.memo (props => {
               <Death onAddDeathDetails={addDeathDetailsHandler} />
             )
           }
-         
+{/*          
           <DropdownButton
             alignRight
             title="Other Events"
@@ -129,7 +129,7 @@ const EventDetails = React.memo (props => {
             <Dropdown.Item eventKey="divorce">Divorce</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item eventKey="other">Other</Dropdown.Item>
-          </DropdownButton>
+          </DropdownButton> */}
           {otherEvents}
         </Card.Body>
       </Card>

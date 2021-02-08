@@ -22,33 +22,36 @@ const ContactDetails = (props) => {
   };
 
   return (
+    
     <Card style={{ width: '50rem' }} className={css(Styles.outerContainer)}>
       <Card.Body>
-        <Card.Title>Add Individual</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Contact</Card.Subtitle>
-        <Form>
-          <Form.Group controlId="formBasicAddress">
-            <Form.Label>Address</Form.Label>
-            <Form.Control type="address" placeholder="Enter Address" value={contactDetails.address} onChange={handleInputChange} name='address'/>
-            <Form.Text className="text-muted">
-              We'll never share your address with anyone else.
+        <Card.Title>Contact</Card.Title> 
+        {/* <Card.Subtitle className="mb-2 text-muted">Contact</Card.Subtitle> */}
+        <div className={css(Styles.innerContainer)}>
+          <Form>
+            <Form.Group controlId="formBasicAddress">
+              <Form.Label>Address</Form.Label>
+              <Form.Control size="sm" type="address" placeholder="Enter Address" value={contactDetails.address} onChange={handleInputChange} name='address' />
+              <Form.Text className="text-muted">
+                We'll never share your address with anyone else.
             </Form.Text>
-          </Form.Group>
-          <Form.Group controlId="formPhoneNumber">
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="phone" placeholder="Enter Phone Number" value={contactDetails.phone} onChange={handleInputChange} name='phone'/>
-            <Form.Text className="text-muted">
-              We'll never share your Number with anyone else.
+            </Form.Group>
+            <Form.Group controlId="formPhoneNumber">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control type="phone" placeholder="Enter Phone Number" value={contactDetails.phone} onChange={handleInputChange} name='phone' />
+              <Form.Text className="text-muted">
+                We'll never share your Number with anyone else.
             </Form.Text>
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={contactDetails.email} onChange={handleInputChange} name='email'/>
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" value={contactDetails.email} onChange={handleInputChange} name='email' />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
             </Form.Text>
-          </Form.Group>
-        </Form>
+            </Form.Group>
+          </Form>
+        </div>
       </Card.Body>
     </Card>
   )
@@ -63,5 +66,7 @@ const Styles = StyleSheet.create({
     width: '80%',
 
   },
-
+  innerContainer: {
+    width:'60%'
+  }
 })
