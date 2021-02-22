@@ -5,7 +5,8 @@ console.log("Base url", process.env);
 export default axios.create({
   
   /* baseURL: "https://stemma-server.herokuapp.com/api" || "http://localhost:8080/api", */
-  baseURL:"http://localhost:8080/api",
+  //baseURL:"http://localhost:8080/api",
+  baseURL: "https://stemma-server.herokuapp.com/api",
   headers: {
     "Content-type": "application/json"
   }
