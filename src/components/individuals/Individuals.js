@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
 import { PlusCircleFill, Trash, Pencil } from 'react-bootstrap-icons';
 
 import IndividualService from '../../services/IndividualService';
@@ -19,12 +17,6 @@ const Individuals = (props) => {
   const [searchTitle, setSearchTitle] = useState("");
   const [indivCardOpen, setIndivCardOpen] = useState(false);
   const [requestData, setRequestData] = useState(new Date());
-
-
-  
-
-
-
 
   useEffect(() => {
     retrieveIndividuals();
@@ -79,12 +71,8 @@ const Individuals = (props) => {
                     onClick={() => setActiveIndividual(individual, index)}
                     key={index}
                   >
-                    <div className={css(Styles.ListTrash)}>
-                      <div className={css(Styles.list)}>{individual.name.firstName} {individual.name.lastName}</div>
-                      
-                       
-                      
-                    </div>
+                    <div className={css(Styles.list)}>{individual.name.firstName} {individual.name.lastName}</div>
+
                   </li>
                 ))}
             </ul>
@@ -126,12 +114,7 @@ const Styles = StyleSheet.create({
     width: '70%',
     //justifyContent: 'flex-end'
   },
-  ListTrash: {
-    display: 'flex',
-    //marginLeft: 30,
-    
-    justifyContent: 'space-between'
-  },
+
   list: {
 
   },
