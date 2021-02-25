@@ -63,7 +63,7 @@ class App extends Component {
         <Route exact path='/individuals/add' component={AddIndividual}/>
         <Route exact path='/individuals/partner'component={AddPartner}/>
 
-        <Route exact path="/individuals/edit/:i" component={EditIndividual} />
+        <Route exact path="/individuals/edit/:id" component={EditIndividual} />
         <Route exact path="/individuals/delete" component={DeleteIndividual} /> 
         <Route exact path="/individuals/:id" component={IndividualsList} />
         <Route exact path="/tree" component={Tree} />

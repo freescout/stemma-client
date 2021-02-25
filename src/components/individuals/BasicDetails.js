@@ -32,7 +32,7 @@ const BasicDetails = React.memo (props => {
             <Card.Subtitle className="mb-2 text-muted">Basic Details</Card.Subtitle>
               <div class="form-row mb-4">
                 <div class="col">
-                  <input type="text" id="firstName" class="form-control" required placeholder="First name" value={basicDetails.firstName} onChange={handleInputChange} name='firstName' />
+                  <input type="text" id="firstName" class="form-control" required placeholder="First Name" value={basicDetails.firstName} onChange={handleInputChange} name='firstName' />
                 </div>
                 <div class="col">
                   <input type="text" id="middleName" class="form-control" placeholder="Middle Name" value={basicDetails.middleName} onChange={handleInputChange} name='middleName' />

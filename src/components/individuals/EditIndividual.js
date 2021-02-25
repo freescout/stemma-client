@@ -8,8 +8,18 @@ import Button from 'react-bootstrap/Button';
 
 
 const EditIndividual = props => {
+  const initialModifyDetails = {
+  
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      nickName: '',
+
+    gender: 'other'
+  };
+ 
   const [currentIndividual, setCurrentIndividual] = useState(props.individual);
-  const [modifyDetails, setModifyDetails] = useState(null);
+  const [modifyDetails, setModifyDetails] = useState('');
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(true);
   
@@ -17,10 +27,12 @@ const EditIndividual = props => {
   const handleClose = () => setShow(false);
 
   const editIndividual = () => {
-    IndividualService.update(currentIndividual.id, currentIndividual)
+    console.log("Indiv before modify", currentIndividual);
+    IndividualService.update(currentIndividual._id, modifyDetails)
       .then(response => {
-        console.log(response.data);
-        setMessage("The tutorial was updated successfully!");
+        console.log("Update Finished, data here",response.data);
+        setMessage("The Individual was updated successfully!");
+        setShow(false);
       })
       .catch(e => {
         console.log(e);
@@ -30,7 +42,8 @@ const EditIndividual = props => {
     const { name, value } = event.target;
     setModifyDetails({ ...modifyDetails, [name]: value }
     )
-    console.log("Curent indiv at edit", currentIndividual);
+    
+    console.log('Modify Details', modifyDetails);
 
   };
 
@@ -53,46 +66,26 @@ const EditIndividual = props => {
         <Modal.Body>
           <div class="form-row mb-4">
             <div class="col">
-              {/* <label for="firstName" class="form-label">First Name</label> */}
-              <input type="text" id="firstName" class="form-control" required placeholder={props.individual.name.firstName}   value={modifyDetails.firstName} onChange={handleInputChange} name='firstName' />
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" class="form-control" placeholder={currentIndividual.name.firstName} value={modifyDetails.firstName} onChange={handleInputChange} name='name.firstName' />
             </div>
-{/*             <div class="col">
+            
+            
+  
+            <div class="col">
               <label for="middleName" class="form-label">Middle Name</label>
-              <input type="text" id="middleName" class="form-control" placeholder="Middle Name" value={props.individual.name.middleName} onChange={handleInputChange} name='middleName' />
+              <input type="text" id="middleName" class="form-control" placeholder={currentIndividual.name.middleName} value={modifyDetails.middleName} onChange={handleInputChange} name='name.middleName' />
             </div>
             <div class="col">
               <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" id="lastName" class="form-control" required placeholder="Last Name" value={props.individual.name.lastName} onChange={handleInputChange} name='lastName' />
+              <input type="text" id="lastName" class="form-control" required placeholder={currentIndividual.name.lastName} value={modifyDetails.lastName} onChange={handleInputChange} name='name.lastName' />
             </div>
             <div class="col">
               <label for="lastName" class="form-label">Nick Name</label>
-              <input type="text" id="nickName" class="form-control" placeholder="Nick Name" value={props.individual.name.nickName} onChange={handleInputChange} name='nickName' />
-            </div> */}
+              <input type="text" id="nickName" class="form-control" placeholder={currentIndividual.name.nickName} value={modifyDetails.nickName} onChange={handleInputChange} name='name.nickName' />
+            </div> 
           </div>
-          
-{/*           <div class="form-row mb-4">
-            <div class="col">
-              <input type="text" id="firstName" class="form-control" required placeholder="First name" value={props.individual.name.firstName} onChange={handleInputChange} name='firstName' />
-            </div>
-            <div class="col">
-              <input type="text" id="middleName" class="form-control" placeholder="Middle Name" value={props.individual.name.middleName} onChange={handleInputChange} name='middleName' />
-            </div>
-            <div class="col">
-              <input type="text" id="lastName" class="form-control" required placeholder="Last Name" value={props.individual.name.lastName} onChange={handleInputChange} name='lastName' />
-            </div>
-            <div class="col">
-              <input type="text" id="nickName" class="form-control" placeholder="Nick Name" value={props.individual.name.nickName} onChange={handleInputChange} name='nickName' />
-            </div>
-          </div>
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={searchName}
-            >
-              Search
-          </button>
-          </div> */}
+        
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
