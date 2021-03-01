@@ -7,12 +7,13 @@ import "./App.css";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Stemma from "../components/Stemma";
 import AddIndividual from "../components/individuals/AddIndividual";
 import Individuals from "../components/individuals/Individuals";
 import DeleteIndividual from "../components/individuals/DeleteIndividual";
 import EditIndividual from "../components/individuals/EditIndividual";
 import IndividualsList from "../components/individuals-list.component";
-import Tree from "../components/Tree";
+import Tree from "../components/Tree/Tree";
 import AddPartner from '../components/individuals/AddPartner';
 
 class App extends Component {
@@ -66,7 +67,8 @@ class App extends Component {
         <Route exact path="/individuals/edit/:id" component={EditIndividual} />
         <Route exact path="/individuals/delete" component={DeleteIndividual} /> 
         <Route exact path="/individuals/:id" component={IndividualsList} />
-        <Route exact path="/tree" component={Tree} />
+        <Route exact path="/tree/:id" component={Tree} />
+        <Route exact path={'/'} component={Stemma} />
       </Switch>
     )
   }
