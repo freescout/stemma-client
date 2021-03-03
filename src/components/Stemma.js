@@ -59,23 +59,25 @@ const Stemma = React.memo(props => {
   function ShowCard() {
     return(
       <div>
-        <p><b>Found {individuals.length} individuals </b></p>
-            'If this not the person you are looking for, '
+        <p><b>Found {individuals.length} individual(s) </b></p>
+            
         <section className="result">
           <Card>
             {individuals &&
               individuals.map((individual, index) => (
                 <div className={css(Styles.treeList)}>
-                  <li
-                    className={"list-group-item" + (index === currentIndex ? "active" : "")}
-                    onClick={() => setActiveIndividual(individual, index)}
-                    key={index}
-                  >
-                    {individual.name.firstName} {" "} {individual.name.lastName}
-                    <Link to={'/tree/' + individual._id}>
-                      <img className={css(Styles.treeImage)} src={img} alt='' />
-                    </Link>
-                  </li>
+                  <Link to={'/individual/' + individual._id}>
+                    <li
+                      className={"list-group-item" + (index === currentIndex ? "active" : "")}
+                      onClick={() => setActiveIndividual(individual, index)}
+                      key={index}
+                    >
+                      {individual.name.firstName} {" "} {individual.name.lastName}
+                      <Link to={'/tree/' + individual._id}>
+                        <img className={css(Styles.treeImage)} src={img} alt='' />
+                      </Link>
+                    </li>
+                  </Link>
                 </div>
               ))}
           </Card>
