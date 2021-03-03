@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import Stemma from "../components/Stemma";
 import AddIndividual from "../components/individuals/AddIndividual";
 import Individuals from "../components/individuals/Individuals";
+import Individual from "../components/individuals/individual/ShowIndividual";
 import DeleteIndividual from "../components/individuals/DeleteIndividual";
 import EditIndividual from "../components/individuals/EditIndividual";
 import IndividualsList from "../components/individuals-list.component";
@@ -62,12 +63,13 @@ class App extends Component {
       <Switch>
         <Route exact path="/individuals" component={Individuals} />
         <Route exact path='/individuals/add' component={AddIndividual}/>
-        <Route exact path='/individuals/partner'component={AddPartner}/>
+        <Route exact path='/individual/:id/partner'component={AddPartner}/>
 
-        <Route exact path="/individuals/edit/:id" component={EditIndividual} />
-        <Route exact path="/individuals/delete" component={DeleteIndividual} /> 
+        <Route exact path="/individual/edit/:id" component={EditIndividual} />
+        <Route exact path="/individual/delete" component={DeleteIndividual} /> 
         <Route exact path="/individuals/:id" component={IndividualsList} />
         <Route exact path="/tree/:id" component={Tree} />
+        <Route exact path="/individual/:id" component={Individual} />
         <Route exact path={'/'} component={Stemma} />
       </Switch>
     )
@@ -77,6 +79,9 @@ class App extends Component {
 export default App;
 
 const Styles = StyleSheet.create({
+  root: {
+    background: '#EAE7DC',
+  },
   content: {
     display: 'flex',
     justifyContent: 'center',
