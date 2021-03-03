@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, css } from 'aphrodite';
 import Card from '../UI/Card';
 
 import IndividualDataService from '../../services/IndividualService';
@@ -30,15 +31,30 @@ const Tree = React.memo(props => {
       });
   };
   return (
-    <section className="search">
-      <Card>
-        <div className="treeIndiv">
-          {currentIndividual.name.firstName}
-        </div>
-      </Card>
-    </section>
+    <div className={css(Styles.tree)}>
+      <div className={css(Styles.gen1)}>
+        Parents
+      </div>
+      <div className={css(Styles.gen2)}>
+        <Card>
+          <div className="treeIndiv">
+            {currentIndividual.name.firstName} {currentIndividual.name.lastName}
+          </div>
+        </Card>
+      </div>
+      <div className={css(Styles.gen3)}>
+        Children
+      </div>
+
+    </div>
+   
   )
 })
 
 export default Tree;
 
+const Styles = StyleSheet.create({
+
+
+
+})

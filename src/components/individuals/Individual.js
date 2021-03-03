@@ -32,22 +32,28 @@ const Individual = props => {
     <div>
        <Card className={css(Styles.individualCard)}>
         <Card.Img variant="top" src={img} />
-          <Card.Body>
-            <Card.Title>{props.individual.name.firstName}  {props.individual.name.lastName}</Card.Title>
-            <Card.Subtitle>{props.individual.name.nickName}</Card.Subtitle>
-            <Card.Text>
-              <div className={css(Styles.deleteEdit)}>
-
-                  <div className={css(Styles.edit)}>
-                    <Pencil onClick={editIndividual}/>
-                  </div>
-
-                <div className={css(Styles.delete)}>
-                  <Trash onClick={deleteIndividual}/>
+        <Card.Body>
+          <Card.Title>{props.individual.name.firstName} {props.individual.middleName}  {props.individual.name.lastName}</Card.Title>
+          <Card.Subtitle>{props.individual.name.nickName}</Card.Subtitle>
+          <Card.Text>
+            <div className={css(Styles.deleteEdit)}>
+                <div className={css(Styles.edit)}>
+                  <Pencil onClick={editIndividual}/>
                 </div>
+
+              <div className={css(Styles.delete)}>
+                <Trash onClick={deleteIndividual}/>
               </div>
-            </Card.Text>
-          </Card.Body>
+            </div>
+          </Card.Text>
+          <Card.Footer>
+            <div className={css(Styles.buttonDiv)}>
+              <Link to={'/individual/' + props.individual._id +'/parents'}><div className={css(Styles.buttons)}>Add Parents</div></Link>              
+              <Link to={'/individual/' + props.individual._id + '/partner'}><div className={css(Styles.buttons)}>Add Partner/Ex</div></Link>
+              <Link><div className={css(Styles.buttons)}>Add Children</div></Link>
+            </div>
+          </Card.Footer>
+        </Card.Body>
       </Card> 
       <div class="col">
         {editable && <EditIndividual individual={props.individual} />}
@@ -63,4 +69,12 @@ const Styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between'
   },
+
+  buttonDiv: {
+    display: 'flex'
+  },
+  buttons: {
+    backgroundColor: '#D8C3A5',
+    margin: 2
+  }
 })

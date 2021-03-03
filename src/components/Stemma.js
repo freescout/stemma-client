@@ -11,9 +11,11 @@ const Stemma = React.memo(props => {
   const [individuals, setIndividuals] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [selectedIndividual, setSelectedIndividual] = useState('');
-  const [inputFilter, setInputFilter] = useState(null);
+  const [inputFilter, setInputFilter] = useState('');
 
   const inputRef = useRef();
+
+  
 
   let img = require('../assets/images/tree1.jpg');
 
@@ -59,7 +61,7 @@ const Stemma = React.memo(props => {
   function ShowCard() {
     return(
       <div>
-        <p><b>Found {individuals.length} individual(s) </b></p>
+        <p><b> {individuals.length} {individuals.length === 1 ? 'individual' : 'individuals'} Found </b></p>
             
         <section className="result">
           <Card>
