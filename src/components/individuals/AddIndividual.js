@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+
 
 import IndividualDataService from '../../services/IndividualService';
 import BasicDetails from './BasicDetails';
 import EventDetails from './EventDetails';
 import ContactDetails from './ContactDetails';
 import AddPartner from './AddPartner';
+
 const AddIndividual = () => {
-  const initialIndividualState = {
-    basicDetails: '',
-    eventDetails: '',
-    contactDetails: ''
-  };
+
   const [individual, setIndividual] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [addPartner, setAddPartner] = useState(false);
@@ -91,7 +87,7 @@ const AddIndividual = () => {
                 <ContactDetails onAddContactDetails={addContactDetailsHandler} />
                 <button onClick={saveIndividual} className="btn btn-success">
                   Submit
-              </button>
+                </button>
               </div>
               
                 {addPartner ? ( 

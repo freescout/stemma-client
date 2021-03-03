@@ -14,7 +14,7 @@ class Header extends Component {
               </Link>
             </div>
           </div>
-          <div className={css(Styles.middleContainer)}>
+{/*           <div className={css(Styles.middleContainer)}>
             <div className={css(Styles.individuals)}>
               <Link to={"/individuals/"} className={css(Styles.link)}>
                 <div>Individuals</div>
@@ -25,13 +25,13 @@ class Header extends Component {
                 <div>Family Tree</div>
               </Link> 
             </div>
-          </div>
+          </div> */}
           <div className={css(Styles.rightContainer)}>
-            <div className={css(Styles.search)}>
+{/*             <div className={css(Styles.search)}>
               <Link to={"/search/"} className={css(Styles.link)}>
                 <div>Search</div>
               </Link> 
-           </div>
+           </div> */}
            <div>
               <div className={css(Styles.login)}></div>
               <Link to={"/login"} className={css(Styles.link)}>

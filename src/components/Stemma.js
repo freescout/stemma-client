@@ -6,19 +6,24 @@ import Card from '../components/UI/Card';
 
 import IndividualDataService from '../services/IndividualService';
 
+
 const Stemma = React.memo(props => {
   const [individuals, setIndividuals] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [selectedIndividual, setSelectedIndividual] = useState('');
-  const [inputFilter, setInputFilter] = useState('');
+  const [inputFilter, setInputFilter] = useState(null);
+
   const inputRef = useRef();
 
   let img = require('../assets/images/tree1.jpg');
 
   useEffect(() => {
     const timer = setTimeout(() => { 
+
+
       console.log("Filter", inputFilter);
       console.log("Ref", inputRef.current.value);
+      console.log(individuals.length);
       if (inputFilter === inputRef.current.value) {
         IndividualDataService.findByFirstName(inputFilter)
           .then(response => {
@@ -37,9 +42,65 @@ const Stemma = React.memo(props => {
     setCurrentIndex(currentIndex);
     setSelectedIndividual(individual);
     console.log('selected Individual', selectedIndividual);
+  };
+
+  let show = null;
+
+  if (individuals.length > 0 ) {
+    console.log("Array length with indivs", individuals.length)
+    show = <ShowCard/>
   }
+  else if (individuals.length === 0) {
+    show = <ShowWithoutCard/>
+    console.log("Array length without indivs", individuals.length)
+  }
+  else show = <DontShow/>;
+
+  function ShowCard() {
+    return(
+      <div>
+        <p><b>Found {individuals.length} individuals </b></p>
+            'If this not the person you are looking for, '
+        <section className="result">
+          <Card>
+            {individuals &&
+              individuals.map((individual, index) => (
+                <div className={css(Styles.treeList)}>
+                  <li
+                    className={"list-group-item" + (index === currentIndex ? "active" : "")}
+                    onClick={() => setActiveIndividual(individual, index)}
+                    key={index}
+                  >
+                    {individual.name.firstName} {" "} {individual.name.lastName}
+                    <Link to={'/tree/' + individual._id}>
+                      <img className={css(Styles.treeImage)} src={img} alt='' />
+                    </Link>
+                  </li>
+                </div>
+              ))}
+          </Card>
+        </section>
+      </div>
+    )
+  }
+
+  function ShowWithoutCard() {
+    return(
+      'Person not found, '
+    )
+  }
+
+  function DontShow() {
+    return null;
+  }
+  
   return (
-    <div>
+   
+    <div className={css(Styles.stemma)}>
+      <h2>Stemma</h2>
+      <section className="introduction">       
+        <p>Search for an individual</p>
+      </section>
       <section className="search">
         <Card>
           <div className="search-input">
@@ -53,25 +114,44 @@ const Stemma = React.memo(props => {
           </div>
         </Card>
       </section>
-      <section className="result">
-        <Card>
-          {individuals &&
-            individuals.map((individual, index) => (
-              <div className= { css(Styles.treeList)}>
-                <li
-                  className={"list-group-item" + (index === currentIndex ? "active" : "")}
-                  onClick={() => setActiveIndividual(individual, index)}
-                  key={index}
-                >
-                  {individual.name.firstName} {" "} {individual.name.lastName}
-                  <Link to={'/tree/'+individual._id}>
-                    <img className={css(Styles.treeImage)} src={img} alt=''/>
-                  </Link>
-                </li>
-              </div>
-            ))}
-        </Card>
-      </section>
+      
+
+      {show}
+      
+      {/* {individuals.length > 0 ? 
+        (
+          <div>
+            <p><b>Found {individuals.length} individuals </b></p>
+            'If this not the person you are looking for, '
+            <section className="result">
+              <Card>
+                {individuals &&
+                  individuals.map((individual, index) => (
+                    <div className={css(Styles.treeList)}>
+                      <li
+                        className={"list-group-item" + (index === currentIndex ? "active" : "")}
+                        onClick={() => setActiveIndividual(individual, index)}
+                        key={index}
+                      >
+                        {individual.name.firstName} {" "} {individual.name.lastName}
+                        <Link to={'/tree/' + individual._id}>
+                          <img className={css(Styles.treeImage)} src={img} alt='' />
+                        </Link>
+                      </li>
+                    </div>
+                  ))}
+              </Card>
+            </section>
+          </div>
+        ) : ('Person not found, ')} Add Individual
+      
+ */}
+      <Link to={'/individuals/add'}>
+        <div> <button> Add Individual </button>
+         </div>
+
+      </Link>
+      
     </div>
   )
 })
@@ -79,6 +159,13 @@ const Stemma = React.memo(props => {
 export default Stemma;
 
 const Styles = StyleSheet.create({
+  stemma: {
+    width: '100%',
+    display: 'flex',
+    flexDirection:'column',
+    alignItems: 'center',
+    background: '#EAE7DC',
+  },
 
   treeList: {
     width: '100%',
